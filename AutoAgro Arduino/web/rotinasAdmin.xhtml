@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        
+
+        <style>
+           
+            #divBusca{
+                float: right;
+                position: relative;
+                top: 12px;
+                background-color:#E0EEEE;
+                border:solid 2px #5F9EA0;
+                border-radius:0 11px 11px 0;
+                width:300px;
+                height:40px;
+            }
+
+            #txtBusca{
+                float:left;
+                background-color:transparent;
+                padding-left:5px;
+                font-size:18px;
+                border:none;
+                height:36px;
+                width:191px;
+            }
+            
+            #btnBusca{
+                border:none;
+                position: relative;
+                text-align: center;
+                align-content: center;
+                float:left;
+                height:36px;
+                border-radius:0 7px 7px 0;
+                width:100px;
+                background:#5F9EA0;
+            }
+ 
+        </style>
+        <title>Teste</title>
+        <nav class="light-blue lighten-1" role="navigation"> 
+            <!-- documentação sobre cores https://materializecss.com/color.html -->
+            <div class="nav-wrapper container"><a id="logo-container" href="#
+                                                  {indexControle.teste()}" class="brand-logo">Auto Agro</a>
+              
+                                                  <h:form>
+                    <div id="divBusca">
+                    
+                        <input type="text" id="txtBusca" placeholder="Buscar..." required="true" value="#{rotinaControleAdmin.rotina.emailUsuario}"/>
+                       
+
+                        
+                        <h:commandLink action="#{rotinaControleAdmin.buscar()}">
+                            Salvar
+                      </h:commandLink>
+                      
+                      
+                    </div>   </h:form>           
+         
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+                    <i class="material-icons">menu</i></a>
+            </div>
+        </nav> 
+    </h:head>
+
+
+
+    <h:body>
+
+        <ui:decorate template="/template/layout_3.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <ui:repeat id="alimentadores"
+                               value="#{rotinaControleAdmin.lista}"
+                               var="rot">
+
+
+                        <div class="col s12 m6">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title">#{rot.usuario.nomeDeUsuario}</span>
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Dia: #{rot.dia}</th>
+                                                <th>Alimentador: #{rot.alimentador.descricaoAlimentador}</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ui:repeat>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+
+
+
+    </h:body>
+
+</html>

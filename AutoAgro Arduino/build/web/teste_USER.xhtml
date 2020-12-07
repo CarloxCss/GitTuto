@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            /* Float four columns side by side */
+            .column {
+                float: left;
+                width: 25%;
+                padding: 0 10px;
+            }
+
+            /* Remove extra left and right margins, due to padding */
+            .row {margin: 0 -5px;}
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Responsive columns */
+            @media screen and (max-width: 600px) {
+                .column {
+                    width: 100%;
+                    display: block;
+                    margin-bottom: 20px;
+                }
+            }
+
+            /* Style the counter cards */
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                padding: 16px;
+                text-align: center;
+                background-color: #f1f1f1;
+            }
+
+        </style>
+        
+                <ui:decorate template="/template/layout_2.xhtml">
+            <ui:define name="content">
+<ul id="nav-mobile" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
+        
+
+        <li class="search">
+          <div class="search-wrapper">
+
+            <div class="search-results"></div>
+          </div>
+        </li>
+        <li class="bold"><a href="#{indexAdminControle.index()}" class="waves-effect waves-teal">Alimentadores</a></li>
+        <li class="bold active"><a href="#{alimentadorControle.preparaIncluir()}" class="waves-effect waves-teal">Add</a></li>
+        <li class="no-padding">
+        </li>
+      </ul>
+
+                
+            </ui:define>
+        </ui:decorate>
+    </h:head>
+
+
+
+    <body>
+
+        <ui:decorate template="/template/layout_1.xhtml">
+
+            <ui:define name="content">
+
+                <div class="row">
+
+                    <ui:repeat id="alimentadores"
+                               value="#{alimentadorControle.lista}"
+                               var="ali">
+                        <div class="column">
+                            <div class="card">
+                                <h3>#{ali.descricaoAlimentador}</h3>
+
+                                <h:form><h:commandLink 
+                                        class="btn-floating halfway-fab waves-effect waves-light red"
+                                        action="#{paginaNovaControle.preparaIncluir(ali.idAlimentador)}">
+                                        <i class="material-icons">add</i>
+                                    </h:commandLink></h:form>
+
+
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Dia</th>
+                                            <th>Hora</th>
+                                            <th>Minuto</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <ui:repeat id="alimentadores"
+                                           value="#{paginaNovaControle.getLista(ali.idAlimentador)}"
+                                           var="rot">    
+                                    <table>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>#{rot.dia}</td>
+                                                <td>#{rot.hora}</td>
+                                                <td>#{rot.minuto}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ui:repeat>
+                            </div>
+                        </div>
+
+                    </ui:repeat>
+                </div>
+            </ui:define>
+        </ui:decorate>
+
+    </body>
+
+</html>

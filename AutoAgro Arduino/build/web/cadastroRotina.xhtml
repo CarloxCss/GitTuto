@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Login</title>
+    </h:head>
+
+
+
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+
+                <br/><br/><br/><br/><br/><br/><br/>
+
+                <div class="container">
+
+
+                    <div class="row center">
+                        <h5 class="header col s12 light">Cadastro Rotina</h5>
+                    </div>
+
+                    <br/><br/>
+
+                    <h:form>
+
+                        <div class="input-field col s6">
+                            <p:inputMask id="dia"
+                                         required="true" value="#{paginaNovaControle.rotina.dia}" maxlength="100" mask="99/99/9999"/>
+                            <label for="dia">Dia</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <p:inputText type="number" id="hora"
+                                         required="true" value="#{paginaNovaControle.rotina.hora}" maxlength="2"/>
+                            <label for="hora">Hora</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <p:inputText type="number" id="minuto"
+                                         required="true" value="#{paginaNovaControle.rotina.minuto}" maxlength="2"/>
+                            <label for="minuto">Minuto</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <p:inputText id="status"
+                                         required="true" value="#{paginaNovaControle.rotina.status}" maxlength="100"/>
+                            <label for="status">Status</label>
+                        </div>                        
+                        
+                        <div class="input-field col s6">
+                            <p:inputText type="number" id="quantia"
+                                         required="true" value="#{paginaNovaControle.rotina.quantia}" maxlength="100"/>
+                            <label for="quantia">Quantia</label>
+                        </div>
+
+                        <center>
+                            <h:commandLink class="waves-effect waves-light btn"  action="#{paginaNovaControle.salvar()}">
+                                <i class="material-icons right">save</i>Salvar
+                            </h:commandLink>
+                        </center>
+
+                    </h:form>
+
+                    <br/>
+                </div>
+
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>
